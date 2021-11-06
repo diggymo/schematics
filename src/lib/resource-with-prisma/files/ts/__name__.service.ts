@@ -10,12 +10,10 @@ import { Injectable } from '@nestjs/common';<% if (crud && type !== 'graphql-cod
     constructor(private prismaService: PrismaService) {}
   
     create(<% if (type !== 'graphql-code-first' && type !== 'graphql-schema-first') { %>create<%= singular(classify(name)) %>Dto: Create<%= singular(classify(name)) %>Dto<% } else { %>create<%= singular(classify(name)) %>Input: Create<%= singular(classify(name)) %>Input<% } %>) {
-      // return 'This action adds a new <%= lowercased(singular(classify(name))) %>';
       return this.prismaService.<%= lowercased(singular(classify(name))) %>.create(create<%= singular(classify(name)) %>Dto)
     }
   
     findAll() {
-      // return `This action returns all <%= lowercased(classify(name)) %>`;
       return this.prismaService.<%= lowercased(singular(classify(name))) %>.findMany()
     }
   
